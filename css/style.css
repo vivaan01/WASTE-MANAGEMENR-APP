@@ -1770,3 +1770,66 @@ padding:50px 0
 	width: 300px;
 
 }
+
+
+/* leaderboard CSS Start */
+.gold{
+	background-color: gold;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.silver{
+	background-color: silver;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.bronze{
+	background-color: rgba(136, 64, 64, 0.811);
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/* leaderboard CSS End */
+
+/* Qr generator CSS Start */
+.qrcode{
+	background-color: white;
+}
+
+/* Qr generator CSS End */
+
+/* Refer and earn start */
+.banner{
+	display: flex;
+	justify-content: space-around;
+}
+
+.box2 img{
+	width: 500px;
+}
+
+.box1{
+	width: 500px;
+}
+
+.button{
+	background-color: #11967C;
+	width: 250px;
+	/* height: 60px; */
+	text-align: center;
+	font-size: 1rem;
+	border-radius: 20px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	cursor: pointer;
+	color: white;
+	/* padding: -10px; */
+}
+
+.button a{
+	text-decoration: none;
+	color: white;
+}
+/* Refer and earn closed */
