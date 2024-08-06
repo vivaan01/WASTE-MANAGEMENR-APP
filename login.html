@@ -1,340 +1,181 @@
-<?php
-$host="localhost";
-$user="root";
-$password="";
-$db="demo";
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
-    <style>
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url(img/slides/loginback2.jpg) ;
-            height: 100vh;
-            width: 100%;
-            background-blend-mode: darken;
-            filter: blur(0px);
-            z-index: -1;
-        }
-        
-        .body-content {
-            padding-top: 15vh;
-            
-        }
-        
-        .container {
-            width: 350px;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-            border-radius: 15px;
-            background: rgba(138, 162, 164, 0.23);
-        }
-        
-        .logo {
-            margin-bottom: 0;
-            margin-top: 0px;
-            padding-top: 0;
-        }
-        
-        .logo img {
-            width: 100px;
-            margin: 0px;
-            border-radius: 50px;
-        }
-        
-        h2 {
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-item {
-            margin: 5px;
-            padding-bottom: 10px;
-            display: flex;
-        }
-        
-        .form-item label {
-            display: block;
-            padding: 2px;
-            font-size: 20px;
-            width: 100px;
-        }
-        
-        .form-item #userName {
-            width: 320px;
-            height: 25px;
-            border: 1px solid #151414d4;
-          
-            color: white;
-        }
-        
-        .form-item #password {
-            width: 290px;
-            height: 25px;
-            border: 1px solid  #151414d4;
-       
-            color: white;
-        }
-        .change{
-            background: white;
-            /* color: black; */
-        }
-        .login {
-            font-size: 18.5px;
-            width: 30px;
-            height: 27px;
-            border: 1px solid white;
-            margin: auto;
-            color: white;
-            background: #151414d4;
-            cursor: pointer;
-        }
-        .login:hover{
-            color: black;
-            background: #6d6dbf6d;
-        }
-        
-        .form-btns {
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-            padding: 10px 0;
-        }
-        
-        .form-btns button {
-            margin: auto;
-            font-size: 20px;
-            padding: 5px 15px;
-            border: 2px solid;
-            border-radius: 15px;
-            color: white;
-            background: #178cc6;
-            width: 280px;
-            cursor: pointer;
-        }
-        
-        .other-options {
-            margin: auto;
-            display: flex;
-        }
-        
-        .other-options p {
-            text-align: center;
-            color: #151414d4;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 15px;
-            cursor: pointer;
-            margin: 5px 45px;
-        }
-        
-        .other-options p:hover {
-            color: rgb(31, 31, 36);
-        }
-        
-        p {
-            text-align: center;
-            font-size: 13px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #151414d4;
-        }
-        
-        .other-option-tab-cover {
-            position: relative;
-            bottom: 25px;
-            left: 25px;
-            width: 300px;
-            background: rgba(138, 162, 164, 0.23);
-            border-radius: 15px;
-            display: none;
-        }
-        .show{
-            display: block;
-
-        }
-        
-        .other-option-tab {
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, Helvetica, sans-serif;
-            color: rgba(132, 131, 140, 0.316);
-        }
-        
-        .other-option-tab .fb {
-            background: #1d1dea2b;
-            border: #1d1dea2b;
-            border-radius: 25px;
-            font-size: 15px;
-            color: black;
-            padding: 5px;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-        
-        .other-option-tab .fb:hover {
-            color: #151414d4;
-        }
-        
-        .other-option-tab .gl {
-            background: #bd1f1f52;
-            border: #bd1f1f52;
-            border-radius: 25px;
-            font-size: 15px;
-            margin: 5px 0;
-            color: black;
-            padding: 5px;
-            cursor: pointer;
-        }
-        
-        .other-option-tab .gl:hover {
-            color: #151414d4;
-        }
-        
-        .other-option-tab .pr {
-            background: #0ca68980;
-            border: #0ca68980;
-            border-radius: 25px;
-            font-size: 15px;
-            color: black;
-            padding: 5px;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-        
-        .other-option-tab .pr:hover {
-            color: white;
-        }
-        .edit{
-            color:darkslategrey;
-            border-radius: 7px;
-            font-size: 35px;
-
-        }
-        .container{
-            background-color: white;
-        }
-
-    .signInBtn{
-        text-align: center;
-            color: #151414d4;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 15px;
-            cursor: pointer;
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waste Management App</title>
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #e7e7e7;
+      margin: 0;
+      padding: 0;
     }
-    
-    p{
-        color: #0ca68980;
+    .wrapper {
+      width: 800px;
+      height: 600px;
+      position: relative;
+      margin: 3% auto;
+      box-shadow: 2px 18px 70px 0px #9D9D9D;
+      overflow: hidden;
     }
-    .debu{
-        color: #151414d4;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        text-decoration: none;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 10px;
+    .login-text {
+      width: 800px;
+      height: 450px;
+      background: linear-gradient(to left, #ab68ca, #de67a3);
+      position: absolute;
+      top: -300px;
+      box-sizing: border-box;
+      padding: 6%;
+      transition: all 0.5s ease-in-out;
+      z-index: 11;
     }
-    .loko{
-        color: white;
+    .text {
+      margin-left: 20px;
+      color: #fff;
+      display: none;
+      transition: all 0.5s ease-in-out;
+      transition-delay: 0.3s;
     }
-    </style>
+    .text a, .text a:visited {
+      font-size: 36px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+    .text hr {
+      width: 10%;
+      float: left;
+      background-color: #fff;
+      font-size: 16px;
+    }
+    .text input {
+      margin-top: 30px;
+      height: 40px;
+      width: 300px;
+      border-radius: 2px;
+      border: none;
+      background-color: #444;
+      opacity: 0.6;
+      outline: none;
+      color: #fff;
+      padding-left: 10px;
+    }
+    .text input[type=text] {
+      margin-top: 60px;
+    }
+    .text button {
+      margin-top: 60px;
+      height: 40px;
+      width: 140px;
+      outline: none;
+    }
+    .login-btn {
+      background: #fff;
+      border: none;
+      border-radius: 2px;
+      color: #696a86;
+    }
+    .signup-btn {
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 2px;
+      color: #fff;
+      margin-left: 30px;
+    }
+    .cta {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #696a86;
+      border: 2px solid #fff;
+      position: absolute;
+      bottom: -30px;
+      left: 370px;
+      color: #fff;
+      outline: none;
+      cursor: pointer;
+      z-index: 11;
+    }
+    .call-text {
+      background-color: #fff;
+      width: 800px;
+      height: 450px;
+      position: absolute;
+      bottom: 0;
+      padding: 10%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .call-text h1 {
+      font-size: 42px;
+      margin-top: 10%;
+      color: #696a86;
+    }
+    .call-text h1 span {
+      color: #333;
+      font-weight: bolder;
+    }
+    .call-text button {
+      height: 40px;
+      width: 180px;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(to left, #ab68ca, #de67a3);
+      color: #fff;
+      font-weight: bolder;
+      margin-top: 30px;
+      cursor: pointer;
+      outline: none;
+    }
+    .show-hide {
+      display: block;
+    }
+    .expand {
+      transform: translateY(300px);
+    }
+  </style>
 </head>
-
 <body>
-    <div class="background"></div>
-    <div class="body-content">
-        <div class="container">
-            <h4 class="edit">Sign up on wasruk</h4>
-            <div class="logo">
-                <img class="log" src="img/logo.png " alt="Company Logo" srcset="" />
-                
-            </div>
-            <h2>User Login</h2>
-            <div class="login-form">
-                <form action="">
-                    <div class="form-item">
-                      
-                        <input type="text" name="userName" id="userName" placeholder="Username or Email" />
-                    </div>
-                    <div class="form-item">
-                      
-                        <input type="password" name="password" id="password" placeholder="Password" />
-                        <p class="login"><a class="loko" href="profile.html"> &#10095;</a></p>
-                    </div>
-
-                    <div class="other-options">
-                    <a href="registerlogin.html" class=""><span class="debu">don't have an account? Register one</span> </a>
-
-                     <a class="signInBtn" href="index.html"><span class="debu">Sign-in options</span> </a><p>    </p>
-                      
-
-                        
-                    </div>
-                </form>
-                <p> &copy; Wasruk.com</p>
-            </div>
-        </div>
-        <div class="other-option-tab-cover">
-            <div class="other-option-tab">
-                <button class="fb">Login with Facebook</button>
-                <button class="gl">Login with Google</button>
-                <button class="pr">Password Reset</button>
-            </div>
-        </div>
-
+  <div class="wrapper">
+    <div class="login-text">
+      <button class="cta"><i class="fas fa-chevron-down fa-1x"></i></button>
+      <div class="text">
+        <a href="">Login</a>
+        <hr>
+        <br>
+        <input type="text" placeholder="Username">
+        <br>
+        <input type="password" placeholder="Password">
+        <br>
+        <button class="login-btn">Log In</button>
+        <button class="signup-btn">Sign Up</button>
+      </div>
     </div>
-    <script>
-        let signInBtn = document.querySelector('.signInBtn')
-        let tabCover = document.querySelector('.other-option-tab-cover')
-        let inputU = document.getElementById('userName')
-        let inputP = document.getElementById('password')
+    <div class="call-text">
+      <h1>Show us your <span>human</span> side</h1>
+      <button>Join and Clean India</button>
+    </div>
+  </div>
 
-        signInBtn.addEventListener('click',evt=>{
-            tabCover.classList.toggle('show');
-        })
-        inputP.addEventListener('focus',evt=>{
-            inputP.style.background = 'white'
-            inputP.style.color = 'black'
+  <script>
+    var cta = document.querySelector(".cta");
+    var check = 0;
 
-        })
-        inputP.addEventListener('focusout',evt=>{
-            inputP.style.background = '#151414d4'
-            inputP.style.color = 'White'
-
-        })
-        inputU.addEventListener('focus',evt=>{
-            inputU.style.background = 'white'
-            inputU.style.color = 'black'
-
-        })
-        inputU.addEventListener('focusout',evt=>{
-            inputU.style.background = '#151414d4'
-            inputU.style.color = 'White'
-
-        })
-
-    </script>
+    cta.addEventListener('click', function(e){
+      var text = e.target.nextElementSibling;
+      var loginText = e.target.parentElement;
+      text.classList.toggle('show-hide');
+      loginText.classList.toggle('expand');
+      if(check == 0) {
+        cta.innerHTML = "<i class=\"fas fa-chevron-up\"></i>";
+        check++;
+      } else {
+        cta.innerHTML = "<i class=\"fas fa-chevron-down\"></i>";
+        check = 0;
+      }
+    });
+  </script>
 </body>
-
 </html>

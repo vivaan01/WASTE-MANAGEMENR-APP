@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .notifications {
+      margin-top: 20px;
+    }
+
+    .notification {
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    .notification .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .notification .message {
+      color: #555;
+    }
+
+    .notification .timestamp {
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Notification Inbox</h1>
+    <div class="notifications" id="notificationList">
+      <!-- Notification items will be dynamically added here -->
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Simulated notifications data (replace with actual data from backend)
+      const notifications = [
+        { id: 1, title: 'New Message', message: 'You have a new message from WasRuk.', timestamp: '2024-08-06T10:30:00Z' },
+        { id: 2, title: 'Reminder', message: 'Don\'t forget to schedule waste collection for tomorrow.', timestamp: '2024-08-05T15:00:00Z' },
+        { id: 3, title: 'Alert', message: 'Emergency waste disposal request received.', timestamp: '2024-08-04T09:45:00Z' }
+      ];
+
+      const notificationList = document.getElementById('notificationList');
+
+      // Function to render notifications
+      function renderNotifications() {
+        notificationList.innerHTML = '';
+        notifications.forEach(notification => {
+          const notificationElement = document.createElement('div');
+          notificationElement.classList.add('notification');
+
+          const titleElement = document.createElement('div');
+          titleElement.classList.add('title');
+          titleElement.textContent = notification.title;
+
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message');
+          messageElement.textContent = notification.message;
+
+          const timestampElement = document.createElement('div');
+          timestampElement.classList.add('timestamp');
+          const timestamp = new Date(notification.timestamp).toLocaleString();
+          timestampElement.textContent = timestamp;
+
+          notificationElement.appendChild(titleElement);
+          notificationElement.appendChild(messageElement);
+          notificationElement.appendChild(timestampElement);
+
+          notificationList.appendChild(notificationElement);
+        });
+      }
+
+      // Initial render
+      renderNotifications();
+
+      // Function to fetch notifications from backend (replace with actual implementation)
+      function fetchNotifications() {
+        // Fetch notifications from backend using SuperSend API
+        fetch('https://api.supersend.io/notifications')
+          .then(response => response.json())
+          .then(data => {
+            // Update the notifications array with data from backend
+            notifications.length = 0; // Clear current notifications
+            data.forEach(notification => notifications.push(notification));
+            renderNotifications(); // Re-render notifications
+          })
+          .catch(error => console.error('Error fetching notifications:', error));
+      }
+
+      // Fetch notifications on page load
+      fetchNotifications();
+    });
+  </script>
+</body>
+</html>
