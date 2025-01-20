@@ -1,0 +1,44 @@
+//JavaScript Program for publish-subscribe model
+/* jshint esversion : 6 */
+"use strict";
+
+//Importing MQTT
+var mqtt = require('mqtt');
+
+//Creating an instance of the client
+var client = mqtt.connect({clientId: "001"});
+
+//Definiting constants
+var topic = "home/kitchen/table";
+var message = "Table inside the kitchen";
+var options = {retain: false, qos: 1};
+
+//On successful connection
+client.on('connect', function () {
+	console.log(" After successful connection: ", client.connected);
+	//If client is connected, then publish on the topic
+	if (client.connected) {
+		console.log(" Publishing on topic: ", topic);
+		client.publish(topic, message, options);
+	}
+});
+
+//On connectivity error
+client.on('error', function (error) {
+	console.log(" Connection error: ", error);
+});
+
+//On receiving message
+client.on('message', function (topic, message) {
+	console.log(" Received message: ", message.toString(), "on topic: ", topic);
+	client.end();
+});
+
+function init() {
+	//Subscribing to the topic
+	console.log("\n Subscribing to topic");
+	client.subscribe(topic, {qos: 1});
+}
+
+//Start of the program
+init();
